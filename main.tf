@@ -1,6 +1,6 @@
-#locals {
-#  inline_policy_count = length(var.policy_json) > 0 ? 1 : 0
-#}
+locals {
+  inline_policy_count = length(data.aws_iam_policy_document.example.json) > 0 ? 1 : 0
+}
 
 
 
@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "example" {
 }
 
 resource "aws_iam_policy" "example" {
-  count  = length(data.aws_iam_policy_document.example.json) > 0 ? 1 : 0
+  count  = local.inline_policy_count
   name   = "example_policy"
   path   = "/"
   policy = data.aws_iam_policy_document.example.json
