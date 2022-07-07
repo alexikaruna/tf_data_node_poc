@@ -1,3 +1,4 @@
+# ~ module avalanche_postgres_source
 data "aws_iam_policy_document" "example" {
   statement {
     sid = "1"
